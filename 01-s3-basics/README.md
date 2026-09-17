@@ -17,4 +17,19 @@ security model.
   *permissions granted*. The object existing says nothing about who can read it.
 - **Block Public Access** is a categorical safety wall at the bucket level —
   the reason S3 leaks are always misconfiguration, never a default.
-- **Default encryption
+- **Default encryption (SSE-S3)** — every object encrypted at rest, AWS-managed keys.
+- **S3 has no real folders** — the "key" is the full path; slashes just look
+  like folders in the console.
+- **Three ways to address an object:** Object URL (browser), S3 URI (CLI/SDK),
+  ARN (IAM policies).
+
+## The security test
+Copied the object's public URL into a browser → received `AccessDenied` (XML).
+Proof the object is stored but not publicly readable — exactly as intended.
+
+## Deliberately skipped (revisit later)
+- Bucket versioning → own sub-project
+- Bucket policies / static website hosting → later S3 work
+- SSE-KMS encryption → when covering KMS
+- Lifecycle rules + storage classes → cost optimization
+- Tags → cost tracking across resources
